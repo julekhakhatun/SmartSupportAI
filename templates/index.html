@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>{{ project_name }} | Welcome</title>
+        <link rel="stylesheet" href="{{ url_for('static',
+        filename='style.css') }}">
+    </head>
+    <body>
+        <header><h1>{{ project_name }}</h1></header>
+        <main>
+            <div id="chat-container">
+                <div id="chat-box"></div>
+                <div id="input-area">
+                <input type="text" id="userInput" placeholder="Ask something..." />
+                <button id="btn-askai" onclick="askAI()">Ask AI</button>
+                <button id="btn-askragai" onclick="askRAG()">Ask RAG</button>
+            
+            </div>
+        </div>
+        </main>
+
+        <script>
+        function addMessage(sender, text) {
+            const chatBox = document.getElementById("chat-box");
+            const message = document.createElement("div");
+            message.className = sender;
+            message.textContent = (sender === 'user' ? 'You' : 'AI') + ':'+ text;
+            chatBox.appendChild(message);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        function askAI() {
+            const userInput = document.getElementById("userInput");
+            const prompt = userInput.value.trim();
+            if (!prompt) return;
+
+            addMessage("user", prompt);
+            userInput.value = "";
+
+            fetch("/api/ask", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({ prompt })
+            })
+            .then(res => res.json())
+            .then(data => {
+                addMessage("ai", data.response);
+        })
+        .catch(err => {
+            addMessage("ai", "[Error: something went wrong.]");
+            console.error(err);
+        });
+
+    }
+    function askRAG() {
+            const userInput = document.getElementById("userInput");
+            const prompt = userInput.value.trim();
+            if (!prompt) return;
+
+            addMessage("user", prompt);
+            userInput.value = "";
+
+            fetch("/api/ask/rag", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({ prompt })
+            })
+            .then(res => res.json())
+            .then(data => {
+                addMessage("ai", data.response);
+        })
+        .catch(err => {
+            addMessage("ai", "[Error: something went wrong.]");
+            console.error(err);
+        });
+    }
+        </script>
+    </body>
+</html>

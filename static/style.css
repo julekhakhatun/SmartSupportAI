@@ -1,0 +1,56 @@
+
+header {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 2rem;
+    padding-top: 20px;
+    padding-right: 15px;
+    padding-bottom: 15px; 
+    color: aliceblue;
+}
+
+.user {
+    text-align: right;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.ai {
+    text-align: left;
+    color: #0dff00;
+    margin-bottom: 6px;
+}
+
+#input-area {
+    display: flex;
+    gap: 10px;
+}
+
+#userInput {
+    flex-grow: 1;
+    padding: 8px;
+}
+
+button {
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 2px;
+}
+body {
+    background-image: url(background.jpg);
+}
+
+
+input[type="text"]{
+  width: 100%;
+  padding: 5px 15px;
+  font-size: 16px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  box-sizing: border-box;
+  outline: none;
+}
+
+input[type="text"]:focus

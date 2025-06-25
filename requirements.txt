@@ -1,0 +1,14 @@
+flask
+flask-cors
+google-generativeai
+faiss-cpu
+sentence-transformers
+numpy
+transformers
+Flask-SQLAlchemy
+bs4
+langchain
+langchain-community
+langgraph
+langchain-google-genai
+
